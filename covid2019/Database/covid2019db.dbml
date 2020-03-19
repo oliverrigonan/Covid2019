@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="covid2019" Class="covid2019dbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=covid2019;Persist Security Info=True;User ID=sa" SettingsObjectName="covid2019.Properties.Settings" SettingsPropertyName="covid2019ConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.MstBarangay" Member="MstBarangays">
+    <Type Name="MstBarangay">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Barangay" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CityId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="MstBarangay_MstPatient" Member="MstPatients" ThisKey="Id" OtherKey="BarangayId" Type="MstPatient" />
+      <Association Name="MstCity_MstBarangay" Member="MstCity" ThisKey="CityId" OtherKey="Id" Type="MstCity" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MstTable" Member="MstTables">
+    <Type Name="MstTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MstCity" Member="MstCities">
+    <Type Name="MstCity">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ProvinceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CityType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="MstCity_MstBarangay" Member="MstBarangays" ThisKey="Id" OtherKey="CityId" Type="MstBarangay" />
+      <Association Name="MstCity_MstPatient" Member="MstPatients" ThisKey="Id" OtherKey="CityId" Type="MstPatient" />
+      <Association Name="MstProvince_MstCity" Member="MstProvince" ThisKey="ProvinceId" OtherKey="Id" Type="MstProvince" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MstCountry" Member="MstCountries">
+    <Type Name="MstCountry">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="MstCountry_MstPatient" Member="MstPatients" ThisKey="Id" OtherKey="CountryId" Type="MstPatient" />
+      <Association Name="MstCountry_MstProvince" Member="MstProvinces" ThisKey="Id" OtherKey="CountryId" Type="MstProvince" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MstPatient" Member="MstPatients">
+    <Type Name="MstPatient">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PatientCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Patient" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="DateEncoded" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateOfArrival" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateOfQuarantine" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Age" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Sex" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BarangayId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CityId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProvinceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CountryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cluster" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PassportNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Remarks" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="MstBarangay_MstPatient" Member="MstBarangay" ThisKey="BarangayId" OtherKey="Id" Type="MstBarangay" IsForeignKey="true" />
+      <Association Name="MstCity_MstPatient" Member="MstCity" ThisKey="CityId" OtherKey="Id" Type="MstCity" IsForeignKey="true" />
+      <Association Name="MstCountry_MstPatient" Member="MstCountry" ThisKey="CountryId" OtherKey="Id" Type="MstCountry" IsForeignKey="true" />
+      <Association Name="MstProvince_MstPatient" Member="MstProvince" ThisKey="ProvinceId" OtherKey="Id" Type="MstProvince" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MstProvince" Member="MstProvinces">
+    <Type Name="MstProvince">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Province" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CountryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="MstProvince_MstCity" Member="MstCities" ThisKey="Id" OtherKey="ProvinceId" Type="MstCity" />
+      <Association Name="MstProvince_MstPatient" Member="MstPatients" ThisKey="Id" OtherKey="ProvinceId" Type="MstPatient" />
+      <Association Name="MstCountry_MstProvince" Member="MstCountry" ThisKey="CountryId" OtherKey="Id" Type="MstCountry" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

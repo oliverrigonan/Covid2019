@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace covid2019
 {
-    public partial class Form1 : Form
+    public partial class IndexForm : Form
     {
-        public Form1()
+        public IndexForm()
         {
             InitializeComponent();
         }

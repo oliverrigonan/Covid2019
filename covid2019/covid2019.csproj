@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,14 +46,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Database\covid2019db.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>covid2019db.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Software\MstPatient\MstPatientDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\Software\MstPatient\MstPatientDetailForm.Designer.cs">
+      <DependentUpon>MstPatientDetailForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Software\MstPatient\MstPatientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\MstPatient\MstPatientForm.Designer.cs">
+      <DependentUpon>MstPatientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IndexForm.Designer.cs">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MstBarangayModel.cs" />
+    <Compile Include="Models\MstCityModel.cs" />
+    <Compile Include="Models\MstCountryModel.cs" />
+    <Compile Include="Models\MstPatientModel.cs" />
+    <Compile Include="Models\MstProvinceModel.cs" />
+    <Compile Include="Models\MstTableModel.cs" />
+    <Compile Include="Models\SysConnectionStringModel.cs" />
+    <Compile Include="Modules\ModCovid2019DatabaseModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Database\covid2019db.dbml.layout">
+      <DependentUpon>covid2019db.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="Forms\Software\MstPatient\MstPatientDetailForm.resx">
+      <DependentUpon>MstPatientDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\MstPatient\MstPatientForm.resx">
+      <DependentUpon>MstPatientForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -60,7 +96,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Database\covid2019db.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>covid2019db.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -70,9 +112,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Settings\SysConnectionStringSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Image\patient.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

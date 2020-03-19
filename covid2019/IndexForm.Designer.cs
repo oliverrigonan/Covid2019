@@ -1,6 +1,6 @@
 ﻿namespace covid2019
 {
-    partial class Form1
+    partial class IndexForm
     {
         /// <summary>
         /// Required designer variable.
