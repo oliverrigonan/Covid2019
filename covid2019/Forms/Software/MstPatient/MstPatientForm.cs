@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace covid2019.Forms.Software.MstPatient
 {
     public partial class MstPatientForm : Form
     {
-        public static Database.covid2019dbDataContext db = Modules.ModCovid2019DatabaseModule.GetCovid2019Database();
+        public static Database.covid2019dbDataContext db = new Database.covid2019dbDataContext(Modules.ModCovid2019DatabaseModule.GetConnectionString());
 
         public MstPatientForm()
         {
@@ -24,14 +25,6 @@ namespace covid2019.Forms.Software.MstPatient
         {
             dataGridViewPatients.Rows.Clear();
             dataGridViewPatients.Refresh();
-
-            dataGridViewPatients.Columns[0].DefaultCellStyle.BackColor = Color.RoyalBlue;
-            dataGridViewPatients.Columns[0].DefaultCellStyle.SelectionBackColor = Color.RoyalBlue;
-            dataGridViewPatients.Columns[0].DefaultCellStyle.ForeColor = Color.White;
-
-            dataGridViewPatients.Columns[1].DefaultCellStyle.BackColor = Color.IndianRed;
-            dataGridViewPatients.Columns[1].DefaultCellStyle.SelectionBackColor = Color.IndianRed;
-            dataGridViewPatients.Columns[1].DefaultCellStyle.ForeColor = Color.White;
 
             String filter = textBoxSearchPatient.Text;
 
@@ -52,6 +45,16 @@ namespace covid2019.Forms.Software.MstPatient
 
             if (patients.Any())
             {
+                db.Refresh(RefreshMode.OverwriteCurrentValues, patients);
+
+                dataGridViewPatients.Columns[0].DefaultCellStyle.BackColor = Color.RoyalBlue;
+                dataGridViewPatients.Columns[0].DefaultCellStyle.SelectionBackColor = Color.RoyalBlue;
+                dataGridViewPatients.Columns[0].DefaultCellStyle.ForeColor = Color.White;
+
+                dataGridViewPatients.Columns[1].DefaultCellStyle.BackColor = Color.IndianRed;
+                dataGridViewPatients.Columns[1].DefaultCellStyle.SelectionBackColor = Color.IndianRed;
+                dataGridViewPatients.Columns[1].DefaultCellStyle.ForeColor = Color.White;
+
                 foreach (var patient in patients)
                 {
                     dataGridViewPatients.Rows.Add(
@@ -94,7 +97,7 @@ namespace covid2019.Forms.Software.MstPatient
             Models.MstPatientModel mstPatientModel = new Models.MstPatientModel()
             {
                 Id = 0,
-                PatientCode = "0000000000",
+                PatientCode = "",
                 Patient = "",
                 DateEncoded = DateTime.Today,
                 DateOfArrival = DateTime.Today,
@@ -171,6 +174,7 @@ namespace covid2019.Forms.Software.MstPatient
 
                     if (currentPatient.Any())
                     {
+                        db.Refresh(RefreshMode.OverwriteCurrentValues, db.GetChangeSet().Deletes);
                         db.MstPatients.DeleteOnSubmit(currentPatient.FirstOrDefault());
                         db.SubmitChanges();
 
@@ -178,6 +182,11 @@ namespace covid2019.Forms.Software.MstPatient
                     }
                 }
             }
+        }
+
+        private void buttonGet_Click(object sender, EventArgs e)
+        {
+            GetPatientData();
         }
     }
 }

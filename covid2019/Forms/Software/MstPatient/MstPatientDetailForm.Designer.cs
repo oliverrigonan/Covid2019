@@ -53,6 +53,7 @@
             this.comboBoxCluster = new System.Windows.Forms.ComboBox();
             this.comboBoxCountry = new System.Windows.Forms.ComboBox();
             this.comboBoxProvince = new System.Windows.Forms.ComboBox();
+            this.comboBoxCity = new System.Windows.Forms.ComboBox();
             this.comboBoxBarangay = new System.Windows.Forms.ComboBox();
             this.textBoxContactNumber = new System.Windows.Forms.TextBox();
             this.textBoxAddress = new System.Windows.Forms.TextBox();
@@ -65,7 +66,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPatientCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxCity = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -364,6 +364,16 @@
             this.comboBoxProvince.TabIndex = 13;
             this.comboBoxProvince.SelectedIndexChanged += new System.EventHandler(this.comboBoxProvince_SelectedIndexChanged);
             // 
+            // comboBoxCity
+            // 
+            this.comboBoxCity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.comboBoxCity.FormattingEnabled = true;
+            this.comboBoxCity.Location = new System.Drawing.Point(215, 478);
+            this.comboBoxCity.Name = "comboBoxCity";
+            this.comboBoxCity.Size = new System.Drawing.Size(310, 31);
+            this.comboBoxCity.TabIndex = 12;
+            this.comboBoxCity.SelectedIndexChanged += new System.EventHandler(this.comboBoxCity_SelectedIndexChanged);
+            // 
             // comboBoxBarangay
             // 
             this.comboBoxBarangay.Font = new System.Drawing.Font("Segoe UI", 10.2F);
@@ -372,6 +382,7 @@
             this.comboBoxBarangay.Name = "comboBoxBarangay";
             this.comboBoxBarangay.Size = new System.Drawing.Size(310, 31);
             this.comboBoxBarangay.TabIndex = 11;
+            this.comboBoxBarangay.SelectedIndexChanged += new System.EventHandler(this.comboBoxBarangay_SelectedIndexChanged);
             // 
             // textBoxContactNumber
             // 
@@ -457,6 +468,7 @@
             this.textBoxPatientCode.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.textBoxPatientCode.Location = new System.Drawing.Point(215, 6);
             this.textBoxPatientCode.Name = "textBoxPatientCode";
+            this.textBoxPatientCode.ReadOnly = true;
             this.textBoxPatientCode.Size = new System.Drawing.Size(208, 30);
             this.textBoxPatientCode.TabIndex = 1;
             // 
@@ -469,16 +481,6 @@
             this.label2.Size = new System.Drawing.Size(112, 23);
             this.label2.TabIndex = 0;
             this.label2.Text = "Patient Code:";
-            // 
-            // comboBoxCity
-            // 
-            this.comboBoxCity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.comboBoxCity.FormattingEnabled = true;
-            this.comboBoxCity.Location = new System.Drawing.Point(215, 478);
-            this.comboBoxCity.Name = "comboBoxCity";
-            this.comboBoxCity.Size = new System.Drawing.Size(310, 31);
-            this.comboBoxCity.TabIndex = 12;
-            this.comboBoxCity.SelectedIndexChanged += new System.EventHandler(this.comboBoxCity_SelectedIndexChanged);
             // 
             // MstPatientDetailForm
             // 

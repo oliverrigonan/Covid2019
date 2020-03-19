@@ -28,10 +28,5 @@ namespace covid2019.Modules
 
             return connectionString;
         }
-
-        public static Database.covid2019dbDataContext GetCovid2019Database()
-        {
-            return new Database.covid2019dbDataContext(GetConnectionString());
-        }
     }
 }
