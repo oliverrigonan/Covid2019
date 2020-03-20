@@ -29,134 +29,6 @@ namespace covid2019.Forms.Software.MstPatient
             SetPatientDetailData();
         }
 
-        public void GetTablesData()
-        {
-            comboBoxSex.DataSource = null;
-
-            var sexes = from d in db.MstTables
-                        where d.Category == "Sex"
-                        select new Models.MstTableModel
-                        {
-                            Id = d.Id,
-                            Category = d.Category,
-                            Code = d.Code,
-                            Value = d.Value
-                        };
-
-            if (sexes.Any())
-            {
-                comboBoxSex.DataSource = sexes.ToList();
-                comboBoxSex.ValueMember = "Value";
-                comboBoxSex.DisplayMember = "Value";
-            }
-
-            comboBoxCluster.DataSource = null;
-
-            var clusters = from d in db.MstTables
-                           where d.Category == "Cluster"
-                           select new Models.MstTableModel
-                           {
-                               Id = d.Id,
-                               Category = d.Category,
-                               Code = d.Code,
-                               Value = d.Value
-                           };
-
-            if (clusters.Any())
-            {
-                comboBoxCluster.DataSource = clusters.ToList();
-                comboBoxCluster.ValueMember = "Value";
-                comboBoxCluster.DisplayMember = "Value";
-            }
-
-            GetCountryData();
-        }
-
-        public void GetCountryData()
-        {
-            comboBoxCountry.DataSource = null;
-
-            var countries = from d in db.MstCountries
-                            select new Models.MstCountryModel
-                            {
-                                Id = d.Id,
-                                Country = d.Country
-                            };
-
-            if (countries.Any())
-            {
-                comboBoxCountry.DataSource = countries.OrderBy(d => d.Country).ToList();
-                comboBoxCountry.ValueMember = "Id";
-                comboBoxCountry.DisplayMember = "Country";
-            }
-
-            GetProvinceData();
-        }
-
-        public void GetProvinceData()
-        {
-            comboBoxProvince.DataSource = null;
-
-            var provinces = from d in db.MstProvinces
-                            where d.CountryId == Convert.ToInt32(comboBoxCountry.SelectedValue)
-                            select new Models.MstProvinceModel
-                            {
-                                Id = d.Id,
-                                Province = d.Province
-                            };
-
-            if (provinces.Any())
-            {
-                comboBoxProvince.DataSource = provinces.OrderBy(d => d.Province).ToList();
-                comboBoxProvince.ValueMember = "Id";
-                comboBoxProvince.DisplayMember = "Province";
-            }
-
-            GetCityData();
-        }
-
-        public void GetCityData()
-        {
-            comboBoxCity.DataSource = null;
-
-            var cities = from d in db.MstCities
-                         where d.ProvinceId == Convert.ToInt32(comboBoxProvince.SelectedValue)
-                         select new Models.MstCityModel
-                         {
-                             Id = d.Id,
-                             City = d.City
-                         };
-
-            if (cities.Any())
-            {
-                comboBoxCity.DataSource = cities.OrderBy(d => d.City).ToList();
-                comboBoxCity.ValueMember = "Id";
-                comboBoxCity.DisplayMember = "City";
-            }
-
-            GetBarangayData();
-        }
-
-        public void GetBarangayData()
-        {
-            comboBoxBarangay.DataSource = null;
-
-            var barangays = from d in db.MstBarangays
-                            where d.CityId == Convert.ToInt32(comboBoxCity.SelectedValue)
-                            select new Models.MstBarangayModel
-                            {
-                                Id = d.Id,
-                                Barangay = d.Barangay
-                            };
-
-            if (barangays.Any())
-            {
-                comboBoxBarangay.DataSource = barangays.OrderBy(d => d.Barangay).ToList();
-                comboBoxBarangay.ValueMember = "Id";
-                comboBoxBarangay.DisplayMember = "Barangay";
-            }
-        }
-
         public void SetPatientDetailData()
         {
             textBoxPatientCode.Text = patientModel.PatientCode;
@@ -177,10 +49,129 @@ namespace covid2019.Forms.Software.MstPatient
             textBoxRemarks.Text = patientModel.Remarks;
         }
 
+        public void GetTablesData()
+        {
+            var sexes = from d in db.MstTables
+                        where d.Category == "Sex"
+                        select new Models.MstTableModel
+                        {
+                            Id = d.Id,
+                            Category = d.Category,
+                            Code = d.Code,
+                            Value = d.Value
+                        };
+
+            comboBoxSex.DataSource = sexes.ToList();
+
+            var clusters = from d in db.MstTables
+                           where d.Category == "Cluster"
+                           select new Models.MstTableModel
+                           {
+                               Id = d.Id,
+                               Category = d.Category,
+                               Code = d.Code,
+                               Value = d.Value
+                           };
+
+            comboBoxCluster.DataSource = clusters.ToList();
+
+            GetCountryData();
+        }
+
+        public void GetCountryData()
+        {
+            var countries = from d in db.MstCountries
+                            select new Models.MstCountryModel
+                            {
+                                Id = d.Id,
+                                Country = d.Country
+                            };
+
+            comboBoxCountry.DataSource = countries.OrderBy(d => d.Country).ToList();
+            GetProvinceData();
+        }
+
+        public void GetProvinceData()
+        {
+            var provinces = from d in db.MstProvinces
+                            where d.CountryId == Convert.ToInt32(comboBoxCountry.SelectedValue)
+                            select new Models.MstProvinceModel
+                            {
+                                Id = d.Id,
+                                Province = d.Province
+                            };
+
+            comboBoxProvince.DataSource = provinces.OrderBy(d => d.Province).ToList();
+            GetCityData();
+        }
+
+        public void GetCityData()
+        {
+            var cities = from d in db.MstCities
+                         where d.ProvinceId == Convert.ToInt32(comboBoxProvince.SelectedValue)
+                         select new Models.MstCityModel
+                         {
+                             Id = d.Id,
+                             City = d.City
+                         };
+
+            comboBoxCity.DataSource = cities.OrderBy(d => d.City).ToList();
+            GetBarangayData();
+        }
+
+        public void GetBarangayData()
+        {
+            var barangays = from d in db.MstBarangays
+                            where d.CityId == Convert.ToInt32(comboBoxCity.SelectedValue)
+                            select new Models.MstBarangayModel
+                            {
+                                Id = d.Id,
+                                Barangay = d.Barangay
+                            };
+
+            comboBoxBarangay.DataSource = barangays.OrderBy(d => d.Barangay).ToList();
+        }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             try
             {
+                if (comboBoxSex.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Sex not found.", "Covid 2019", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (comboBoxCountry.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Country not found.", "Covid 2019", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (comboBoxProvince.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Province not found.", "Covid 2019", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (comboBoxCity.SelectedIndex == -1)
+                {
+                    MessageBox.Show("City not found.", "Covid 2019", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (comboBoxBarangay.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Barangay not found.", "Covid 2019", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (comboBoxCluster.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Cluster not found.", "Covid 2019", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 if (patientModel.Id == 0)
                 {
                     String patientCode = "0000000001";
@@ -280,16 +271,31 @@ namespace covid2019.Forms.Software.MstPatient
         private void comboBoxCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetProvinceData();
+
+            if (comboBoxProvince.SelectedIndex == -1)
+            {
+                comboBoxProvince.Text = "";
+            }
         }
 
         private void comboBoxProvince_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetCityData();
+
+            if (comboBoxCity.SelectedIndex == -1)
+            {
+                comboBoxCity.Text = "";
+            }
         }
 
         private void comboBoxCity_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetBarangayData();
+
+            if (comboBoxBarangay.SelectedIndex == -1)
+            {
+                comboBoxBarangay.Text = "";
+            }
         }
 
         private void comboBoxBarangay_SelectedIndexChanged(object sender, EventArgs e)

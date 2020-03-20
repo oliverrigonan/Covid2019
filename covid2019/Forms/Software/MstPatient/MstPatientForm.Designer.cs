@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonGet = new System.Windows.Forms.Button();
             this.buttonCSV = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
@@ -63,7 +64,7 @@
             this.ColumnRemarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSpace = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBoxSearchPatient = new System.Windows.Forms.TextBox();
-            this.buttonGet = new System.Windows.Forms.Button();
+            this.folderBrowserDialogGenerateCSV = new System.Windows.Forms.FolderBrowserDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -85,6 +86,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1497, 63);
             this.panel1.TabIndex = 0;
+            // 
+            // buttonGet
+            // 
+            this.buttonGet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonGet.BackColor = System.Drawing.Color.DarkCyan;
+            this.buttonGet.FlatAppearance.BorderColor = System.Drawing.Color.MediumSeaGreen;
+            this.buttonGet.FlatAppearance.BorderSize = 0;
+            this.buttonGet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGet.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonGet.ForeColor = System.Drawing.Color.White;
+            this.buttonGet.Location = new System.Drawing.Point(1095, 12);
+            this.buttonGet.Name = "buttonGet";
+            this.buttonGet.Size = new System.Drawing.Size(93, 41);
+            this.buttonGet.TabIndex = 6;
+            this.buttonGet.Text = "Get";
+            this.buttonGet.UseVisualStyleBackColor = false;
+            this.buttonGet.Click += new System.EventHandler(this.buttonGet_Click);
             // 
             // buttonCSV
             // 
@@ -414,23 +432,6 @@
             this.textBoxSearchPatient.TabIndex = 1;
             this.textBoxSearchPatient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSearchPatient_KeyDown);
             // 
-            // buttonGet
-            // 
-            this.buttonGet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonGet.BackColor = System.Drawing.Color.DarkCyan;
-            this.buttonGet.FlatAppearance.BorderColor = System.Drawing.Color.MediumSeaGreen;
-            this.buttonGet.FlatAppearance.BorderSize = 0;
-            this.buttonGet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonGet.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonGet.ForeColor = System.Drawing.Color.White;
-            this.buttonGet.Location = new System.Drawing.Point(1095, 12);
-            this.buttonGet.Name = "buttonGet";
-            this.buttonGet.Size = new System.Drawing.Size(93, 41);
-            this.buttonGet.TabIndex = 6;
-            this.buttonGet.Text = "Get";
-            this.buttonGet.UseVisualStyleBackColor = false;
-            this.buttonGet.Click += new System.EventHandler(this.buttonGet_Click);
-            // 
             // MstPatientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -494,5 +495,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnRemarks;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSpace;
         private System.Windows.Forms.Button buttonGet;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogGenerateCSV;
     }
 }

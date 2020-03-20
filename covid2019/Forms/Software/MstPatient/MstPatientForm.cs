@@ -4,7 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Linq;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -89,7 +92,85 @@ namespace covid2019.Forms.Software.MstPatient
 
         private void buttonCSV_Click(object sender, EventArgs e)
         {
+            DialogResult dialogResult = folderBrowserDialogGenerateCSV.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                StringBuilder csv = new StringBuilder();
+                String[] header = {
+                    "Patient Code",
+                    "Patient",
+                    "Date Encoded",
+                    "Date of Arrival",
+                    "Date of Quarantine",
+                    "Age",
+                    "Sex",
+                    "Address",
+                    "Contact Number",
+                    "Barangay",
+                    "City",
+                    "Province",
+                    "Country",
+                    "Cluster",
+                    "Passport Number",
+                    "Remarks"
+                };
+                csv.AppendLine(String.Join(",", header));
 
+                String filter = textBoxSearchPatient.Text;
+
+                var patients = from d in db.MstPatients
+                               where d.PatientCode.Contains(filter) ||
+                               d.Patient.Contains(filter) ||
+                               d.Sex.Contains(filter) ||
+                               d.Address.Contains(filter) ||
+                               d.ContactNumber.Contains(filter) ||
+                               d.MstBarangay.Barangay.Contains(filter) ||
+                               d.MstCity.City.Contains(filter) ||
+                               d.MstProvince.Province.Contains(filter) ||
+                               d.MstCountry.Country.Contains(filter) ||
+                               d.Cluster.Contains(filter) ||
+                               d.PassportNumber.Contains(filter) ||
+                               d.Remarks.Contains(filter)
+                               select d;
+
+                if (patients.Any())
+                {
+                    foreach (var patient in patients)
+                    {
+                        String[] data = {
+                           patient.PatientCode,
+                           patient.Patient,
+                           patient.DateEncoded.ToShortDateString(),
+                           patient.DateOfArrival.ToShortDateString(),
+                           patient.DateOfQuarantine.ToShortDateString(),
+                           patient.Age.ToString(),
+                           patient.Sex,
+                           patient.Address,
+                           patient.ContactNumber,
+                           patient.MstBarangay.Barangay,
+                           patient.MstCity.City,
+                           patient.MstProvince.Province,
+                           patient.MstCountry.Country,
+                           patient.Cluster,
+                           patient.PassportNumber,
+                           patient.Remarks
+                        };
+
+                        csv.AppendLine(String.Join(",", data));
+                    }
+                }
+
+                String executingUser = WindowsIdentity.GetCurrent().Name;
+
+                DirectorySecurity securityRules = new DirectorySecurity();
+                securityRules.AddAccessRule(new FileSystemAccessRule(executingUser, FileSystemRights.Read, AccessControlType.Allow));
+                securityRules.AddAccessRule(new FileSystemAccessRule(executingUser, FileSystemRights.FullControl, AccessControlType.Allow));
+
+                DirectoryInfo createDirectorySTCSV = Directory.CreateDirectory(folderBrowserDialogGenerateCSV.SelectedPath, securityRules);
+                File.WriteAllText(createDirectorySTCSV.FullName + "\\PatientReport_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".csv", csv.ToString(), Encoding.GetEncoding("iso-8859-1"));
+
+                MessageBox.Show("Generate CSV Successful!", "Generate CSV", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)

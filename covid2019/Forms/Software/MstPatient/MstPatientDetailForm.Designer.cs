@@ -325,7 +325,7 @@
             this.textBoxRemarks.Multiline = true;
             this.textBoxRemarks.Name = "textBoxRemarks";
             this.textBoxRemarks.Size = new System.Drawing.Size(445, 123);
-            this.textBoxRemarks.TabIndex = 17;
+            this.textBoxRemarks.TabIndex = 19;
             // 
             // textBoxPassportNumber
             // 
@@ -333,55 +333,65 @@
             this.textBoxPassportNumber.Location = new System.Drawing.Point(215, 589);
             this.textBoxPassportNumber.Name = "textBoxPassportNumber";
             this.textBoxPassportNumber.Size = new System.Drawing.Size(310, 30);
-            this.textBoxPassportNumber.TabIndex = 16;
+            this.textBoxPassportNumber.TabIndex = 18;
             // 
             // comboBoxCluster
             // 
+            this.comboBoxCluster.DisplayMember = "Value";
             this.comboBoxCluster.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.comboBoxCluster.FormattingEnabled = true;
             this.comboBoxCluster.Location = new System.Drawing.Point(215, 552);
             this.comboBoxCluster.Name = "comboBoxCluster";
             this.comboBoxCluster.Size = new System.Drawing.Size(310, 31);
-            this.comboBoxCluster.TabIndex = 15;
+            this.comboBoxCluster.TabIndex = 17;
+            this.comboBoxCluster.ValueMember = "Value";
             // 
             // comboBoxCountry
             // 
+            this.comboBoxCountry.DisplayMember = "Country";
             this.comboBoxCountry.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.comboBoxCountry.FormattingEnabled = true;
             this.comboBoxCountry.Location = new System.Drawing.Point(215, 404);
             this.comboBoxCountry.Name = "comboBoxCountry";
             this.comboBoxCountry.Size = new System.Drawing.Size(310, 31);
-            this.comboBoxCountry.TabIndex = 14;
+            this.comboBoxCountry.TabIndex = 13;
+            this.comboBoxCountry.ValueMember = "Id";
             this.comboBoxCountry.SelectedIndexChanged += new System.EventHandler(this.comboBoxCountry_SelectedIndexChanged);
             // 
             // comboBoxProvince
             // 
+            this.comboBoxProvince.DisplayMember = "Province";
             this.comboBoxProvince.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.comboBoxProvince.FormattingEnabled = true;
             this.comboBoxProvince.Location = new System.Drawing.Point(215, 441);
             this.comboBoxProvince.Name = "comboBoxProvince";
             this.comboBoxProvince.Size = new System.Drawing.Size(310, 31);
-            this.comboBoxProvince.TabIndex = 13;
+            this.comboBoxProvince.TabIndex = 14;
+            this.comboBoxProvince.ValueMember = "Id";
             this.comboBoxProvince.SelectedIndexChanged += new System.EventHandler(this.comboBoxProvince_SelectedIndexChanged);
             // 
             // comboBoxCity
             // 
+            this.comboBoxCity.DisplayMember = "City";
             this.comboBoxCity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.comboBoxCity.FormattingEnabled = true;
             this.comboBoxCity.Location = new System.Drawing.Point(215, 478);
             this.comboBoxCity.Name = "comboBoxCity";
             this.comboBoxCity.Size = new System.Drawing.Size(310, 31);
-            this.comboBoxCity.TabIndex = 12;
+            this.comboBoxCity.TabIndex = 15;
+            this.comboBoxCity.ValueMember = "Id";
             this.comboBoxCity.SelectedIndexChanged += new System.EventHandler(this.comboBoxCity_SelectedIndexChanged);
             // 
             // comboBoxBarangay
             // 
+            this.comboBoxBarangay.DisplayMember = "Barangay";
             this.comboBoxBarangay.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.comboBoxBarangay.FormattingEnabled = true;
             this.comboBoxBarangay.Location = new System.Drawing.Point(215, 515);
             this.comboBoxBarangay.Name = "comboBoxBarangay";
             this.comboBoxBarangay.Size = new System.Drawing.Size(310, 31);
-            this.comboBoxBarangay.TabIndex = 11;
+            this.comboBoxBarangay.TabIndex = 16;
+            this.comboBoxBarangay.ValueMember = "Id";
             this.comboBoxBarangay.SelectedIndexChanged += new System.EventHandler(this.comboBoxBarangay_SelectedIndexChanged);
             // 
             // textBoxContactNumber
@@ -390,7 +400,7 @@
             this.textBoxContactNumber.Location = new System.Drawing.Point(215, 368);
             this.textBoxContactNumber.Name = "textBoxContactNumber";
             this.textBoxContactNumber.Size = new System.Drawing.Size(310, 30);
-            this.textBoxContactNumber.TabIndex = 10;
+            this.textBoxContactNumber.TabIndex = 12;
             // 
             // textBoxAddress
             // 
@@ -399,16 +409,18 @@
             this.textBoxAddress.Multiline = true;
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(445, 103);
-            this.textBoxAddress.TabIndex = 9;
+            this.textBoxAddress.TabIndex = 11;
             // 
             // comboBoxSex
             // 
+            this.comboBoxSex.DisplayMember = "Value";
             this.comboBoxSex.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.comboBoxSex.FormattingEnabled = true;
             this.comboBoxSex.Location = new System.Drawing.Point(215, 222);
             this.comboBoxSex.Name = "comboBoxSex";
             this.comboBoxSex.Size = new System.Drawing.Size(208, 31);
-            this.comboBoxSex.TabIndex = 8;
+            this.comboBoxSex.TabIndex = 10;
+            this.comboBoxSex.ValueMember = "Value";
             // 
             // textBoxAge
             // 
@@ -416,7 +428,7 @@
             this.textBoxAge.Location = new System.Drawing.Point(215, 186);
             this.textBoxAge.Name = "textBoxAge";
             this.textBoxAge.Size = new System.Drawing.Size(146, 30);
-            this.textBoxAge.TabIndex = 7;
+            this.textBoxAge.TabIndex = 9;
             // 
             // dateTimePickerDateOfQuarantine
             // 
@@ -425,7 +437,7 @@
             this.dateTimePickerDateOfQuarantine.Location = new System.Drawing.Point(215, 150);
             this.dateTimePickerDateOfQuarantine.Name = "dateTimePickerDateOfQuarantine";
             this.dateTimePickerDateOfQuarantine.Size = new System.Drawing.Size(146, 30);
-            this.dateTimePickerDateOfQuarantine.TabIndex = 6;
+            this.dateTimePickerDateOfQuarantine.TabIndex = 8;
             // 
             // dateTimePickerDateOfArrival
             // 
@@ -434,7 +446,7 @@
             this.dateTimePickerDateOfArrival.Location = new System.Drawing.Point(215, 114);
             this.dateTimePickerDateOfArrival.Name = "dateTimePickerDateOfArrival";
             this.dateTimePickerDateOfArrival.Size = new System.Drawing.Size(146, 30);
-            this.dateTimePickerDateOfArrival.TabIndex = 5;
+            this.dateTimePickerDateOfArrival.TabIndex = 7;
             // 
             // dateTimePickerDateEncoded
             // 
@@ -443,7 +455,7 @@
             this.dateTimePickerDateEncoded.Location = new System.Drawing.Point(215, 78);
             this.dateTimePickerDateEncoded.Name = "dateTimePickerDateEncoded";
             this.dateTimePickerDateEncoded.Size = new System.Drawing.Size(146, 30);
-            this.dateTimePickerDateEncoded.TabIndex = 4;
+            this.dateTimePickerDateEncoded.TabIndex = 6;
             // 
             // textBoxPatient
             // 
@@ -451,7 +463,7 @@
             this.textBoxPatient.Location = new System.Drawing.Point(215, 42);
             this.textBoxPatient.Name = "textBoxPatient";
             this.textBoxPatient.Size = new System.Drawing.Size(310, 30);
-            this.textBoxPatient.TabIndex = 3;
+            this.textBoxPatient.TabIndex = 5;
             // 
             // label3
             // 
