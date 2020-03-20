@@ -218,7 +218,7 @@ namespace covid2019.Forms.Software.MstPatient
                     if (currentPatient.Any())
                     {
                         var updateCurrentPatient = currentPatient.FirstOrDefault();
-                        updateCurrentPatient.Patient = textBoxPatient.Text;
+                        updateCurrentPatient.Patient = encryptDecryptTool.EncryptString(textBoxPatient.Text);
                         updateCurrentPatient.DateEncoded = dateTimePickerDateEncoded.Value;
                         updateCurrentPatient.DateOfArrival = dateTimePickerDateOfArrival.Value;
                         updateCurrentPatient.DateOfQuarantine = dateTimePickerDateOfQuarantine.Value;

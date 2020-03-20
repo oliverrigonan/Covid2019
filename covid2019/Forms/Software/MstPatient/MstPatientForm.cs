@@ -376,6 +376,7 @@ namespace covid2019.Forms.Software.MstPatient
         {
             if (e.KeyCode == Keys.Enter)
             {
+                pageNumber = 1;
                 UpdatePatientDataSource();
             }
         }
@@ -425,6 +426,7 @@ namespace covid2019.Forms.Software.MstPatient
                         db.MstPatients.DeleteOnSubmit(currentPatient.FirstOrDefault());
                         db.SubmitChanges();
 
+                        pageNumber = 1;
                         UpdatePatientDataSource();
                     }
                 }
