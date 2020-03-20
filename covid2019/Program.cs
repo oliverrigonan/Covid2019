@@ -16,8 +16,8 @@ namespace covid2019
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new IndexForm());
-            Application.Run(new Forms.Software.MstPatient.MstPatientForm());
+            Application.Run(new IndexForm());
+            //Application.Run(new Forms.Software.MstPatient.MstPatientForm());
         }
     }
 }

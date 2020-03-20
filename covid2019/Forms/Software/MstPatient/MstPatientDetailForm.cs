@@ -14,6 +14,7 @@ namespace covid2019.Forms.Software.MstPatient
     public partial class MstPatientDetailForm : Form
     {
         public static Database.covid2019dbDataContext db = new Database.covid2019dbDataContext(Modules.ModCovid2019DatabaseModule.GetConnectionString());
+        private Tools.SysEncryptDecryptTool encryptDecryptTool = new Tools.SysEncryptDecryptTool();
 
         public MstPatientForm patientForm;
         public Models.MstPatientModel patientModel;
@@ -185,7 +186,7 @@ namespace covid2019.Forms.Software.MstPatient
                     Database.MstPatient newPatient = new Database.MstPatient()
                     {
                         PatientCode = patientCode,
-                        Patient = textBoxPatient.Text,
+                        Patient = encryptDecryptTool.EncryptString(textBoxPatient.Text),
                         DateEncoded = dateTimePickerDateEncoded.Value,
                         DateOfArrival = dateTimePickerDateOfArrival.Value,
                         DateOfQuarantine = dateTimePickerDateOfQuarantine.Value,
@@ -205,7 +206,7 @@ namespace covid2019.Forms.Software.MstPatient
                     db.MstPatients.InsertOnSubmit(newPatient);
                     db.SubmitChanges();
 
-                    patientForm.GetPatientData();
+                    patientForm.UpdatePatientDataSource();
                     Close();
                 }
                 else
@@ -235,7 +236,7 @@ namespace covid2019.Forms.Software.MstPatient
 
                         db.SubmitChanges();
 
-                        patientForm.GetPatientData();
+                        patientForm.UpdatePatientDataSource();
                         Close();
                     }
                     else

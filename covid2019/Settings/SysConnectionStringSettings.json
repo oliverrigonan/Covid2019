@@ -1,6 +1,6 @@
 ﻿{
   "DataSource": "localhost",
-  "InitialCatalog": "covid2019",
+  "InitialCatalog": "covid2019_a",
   "UserId": "sa",
   "Password": "innosoft"
 }

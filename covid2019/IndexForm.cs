@@ -16,5 +16,18 @@ namespace covid2019
         {
             InitializeComponent();
         }
+
+        private void buttonLaunch_Click(object sender, EventArgs e)
+        {
+            Hide();
+
+            Forms.Software.MstPatient.MstPatientForm mstPatientForm = new Forms.Software.MstPatient.MstPatientForm();
+            mstPatientForm.Show();
+        }
+
+        private void IndexForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
