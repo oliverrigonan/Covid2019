@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>virus.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -124,6 +127,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Image\patient.png" />
+    <Content Include="Resources\Image\virus.ico" />
+    <Content Include="Resources\Image\virus.png" />
+    <Content Include="virus.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

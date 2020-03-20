@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MstPatientForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonGet = new System.Windows.Forms.Button();
             this.buttonCSV = new System.Windows.Forms.Button();
@@ -441,6 +442,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MstPatientForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
